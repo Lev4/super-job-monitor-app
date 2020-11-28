@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="Sberjobs" uuid="f719a5c9-ccff-40d7-b8bf-6ee87a7e032c">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/sbtalents</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="poska" uuid="c6508df5-43ec-4b00-a8e2-18f44abde0b8">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://poska-do-user-8280257-0.b.db.ondigitalocean.com:25060/defaultdb</jdbc-url>
+    </data-source>
+  </component>
+</project>
