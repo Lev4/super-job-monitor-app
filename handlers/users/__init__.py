@@ -1,4 +1,3 @@
-from .menu import dp
 from .purchase import dp
 from .form import dp
 from .help import dp

@@ -36,3 +36,6 @@ def get_vacancies_by_key_words():
     list_of_vacs = [x[0] for x in list_of_vacs]
 
     return list_of_vacs
+
+def add_user_to_db():
+    pass

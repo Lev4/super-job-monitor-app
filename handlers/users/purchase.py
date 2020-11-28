@@ -3,7 +3,7 @@ import logging
 from aiogram.dispatcher.filters import Command
 from aiogram.types import Message, CallbackQuery
 from utils.db_api.dbutils import get_num_vacancies
-from keyboards.inline.choice_buttons import choice, pear_keyboard, apples_keyboard
+from keyboards.inline.choice_buttons import choice, second_choice
 from loader import dp
 
 
@@ -29,7 +29,7 @@ async def buying_pear(call: CallbackQuery):
     logging.info(f"{callback_data}")
 
     await call.message.answer("ОК идем вперед.",
-                              reply_markup=pear_keyboard)
+                              reply_markup=second_choice)
 
 
 # Попробуем использовать фильтр от CallbackData
@@ -42,18 +42,15 @@ async def buying_apples(call: CallbackQuery, callback_data: dict):
 
     quantity = callback_data.get("quantity")
     await call.message.answer(f"Окей идем назад.",
-                              reply_markup=apples_keyboard)
+                              reply_markup=second_choice)
 
 
 @dp.callback_query_handler(text="cancel")
 async def cancel_buying(call: CallbackQuery):
     # Ответим в окошке с уведомлением!
-    await call.answer("Вы отменили эту покупку!", show_alert=True)
+    await call.answer("Вы все отменили!", show_alert=True)
 
     # Вариант 1 - Отправляем пустую клваиатуру изменяя сообщение, для того, чтобы ее убрать из сообщения!
     await call.message.edit_reply_markup(reply_markup=None)
 
-    # Вариант 2 отправки клавиатуры (по API)
-    # await bot.edit_message_reply_markup(chat_id=call.from_user.id,
-    #                                     message_id=call.message.message_id,
-    #                                     reply_markup=None)
+

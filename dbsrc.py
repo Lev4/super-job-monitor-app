@@ -6,10 +6,6 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-# conn_string = f'postgresql+psycopg2://'
-# conn_string = f'postgresql://'
-# conn_string += f'{dbconfig.DATABASE_USER}:{dbconfig.DATABASE_PASS}'
-# conn_string += f'@{dbconfig.DATABASE_HOST}:{dbconfig.DATABASE_PORT}/{dbconfig.DATABASE_NAME}'
 
 Base = declarative_base()
 
@@ -46,6 +42,29 @@ class Vacancy(BaseModel):
 
     def __repr__(self):
         return f'{self.vactitle} {self.vacdescription}'
+
+
+class User(BaseModel):
+    """ Модель данных для таблицы вакансий """
+
+    __tablename__ = 'user'
+
+    user_id = Column(VARCHAR())
+    user_email = Column(VARCHAR(255))
+    user_keywords = Column(VARCHAR())
+
+
+
+    def __init__(self, vacid, vactitle, vacdescription, vacdate, vacstatus):
+        self.vacid = vacid
+        self.vactitle = vactitle
+        self.vacdescription = vacdescription
+        self.vacdate = vacdate
+        self.vacstatus = vacstatus
+
+    def __repr__(self):
+        return f'{self.vactitle} {self.vacdescription}'
+
 
 
 class DataAccessLayer:
