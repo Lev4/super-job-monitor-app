@@ -13,10 +13,10 @@ choice.insert(cancel_button)
 
 #Второй чойс
 second_choice = InlineKeyboardMarkup(row_width=3)
-go_forward = InlineKeyboardButton(text="Вперед", callback_data='next'),
+go_forward = InlineKeyboardButton(text="Вперед", callback_data='next')
 second_choice.insert(go_forward)
 
-go_back = InlineKeyboardButton(text="Назад", callback_data='back'),
+go_back = InlineKeyboardButton(text="Назад", callback_data='back')
 second_choice.insert(go_back)
 
 cancel_button = InlineKeyboardButton(text="Отмена", callback_data="cancel")

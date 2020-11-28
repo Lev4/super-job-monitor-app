@@ -14,7 +14,7 @@ async def show_items(message: Message):
     await message.answer(text=f" У нас есть {num_vacancies} вакасний", reply_markup=choice)
 
 
-# Попробуйем отловить по встроенному фильтру, где в нашем call.data содержится "Вперед"
+# Попробуйем отловить по встроенному фильтру, где в нашем call.data содержится "look"
 @dp.callback_query_handler(text_contains="look")
 async def take_a_look(call: CallbackQuery):
 
@@ -26,19 +26,36 @@ async def take_a_look(call: CallbackQuery):
     await call.message.answer(f"ОК идем вперед",
                               reply_markup=second_choice)
 
-# Попробуйем отловить по встроенному фильтру, где в нашем call.data содержится "Вперед"
-# @dp.callback_query_handler(text_contains="Вперед")
-# async def step_forward(call: CallbackQuery):
-#
-#     await call.answer(cache_time=10)
-#     callback_data = call.data
-#
-#     logging.info(f"{callback_data}")
-#
-#     # next_vacancy_id = get_next_vacancy_id()
-#
-#     await call.message.answer("ОК идем вперед.",
-#                               reply_markup=second_choice)
+# Попробуйем отловить по встроенному фильтру, где в нашем call.data содержится "next"
+@dp.callback_query_handler(text_contains="next")
+async def step_forward(call: CallbackQuery):
+
+    await call.answer(cache_time=10)
+    callback_data = call.data
+
+    logging.info(f"{callback_data}")
+
+    # next_vacancy_id = get_next_vacancy_id()
+
+    await call.message.answer("ОК идем вперед.",
+                              reply_markup=second_choice)
+
+
+
+# Попробуйем отловить по встроенному фильтру, где в нашем call.data содержится "back"
+@dp.callback_query_handler(text_contains="back")
+async def step_forward(call: CallbackQuery):
+
+    await call.answer(cache_time=10)
+    callback_data = call.data
+
+    logging.info(f"{callback_data}")
+
+    # next_vacancy_id = get_next_vacancy_id()
+
+    await call.message.answer("ОК идем назад.",
+                              reply_markup=second_choice)
+
 
 
 @dp.callback_query_handler(text="cancel")
