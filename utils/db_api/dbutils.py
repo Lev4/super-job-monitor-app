@@ -20,13 +20,14 @@ def get_num_vacancies_by_key_words():
     return len(list_of_vacs)
 
 
-def get_num_vacancies_by_key_words():
+def get_first_vacancy_id():
     dal = DataAccessLayer(conn_string)
     dal.connect()
-    list_of_vacs = dal.session.query(Vacancy.vacid).filter(Vacancy.vactitle.op('~')(r"python|Руководитель")).all()
+    list_of_vacs = dal.session.query(Vacancy.vacid).first()
     dal.session.commit()
+    # list_of_vacs = [x[0] for x in list_of_vacs]
 
-    return len(list_of_vacs)
+    return list_of_vacs[0]
 
 def get_vacancies_by_key_words():
     dal = DataAccessLayer(conn_string)
