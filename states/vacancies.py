@@ -28,9 +28,8 @@ class Vacancies(StatesGroup):
         if iterable:
             self.lvacs = previous_current_next(self, iterable)
 
-    Q1_back = State()
-    Q2_current = State()
-    Q3_next = State()
+    Q1paginfo = State()
+    Q2paginfo = State()
 
 
 class VacNavigator:

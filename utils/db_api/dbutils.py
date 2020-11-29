@@ -11,6 +11,7 @@ def get_num_vacancies():
     dal.session.commit()
     return rows
 
+
 def get_num_vacancies_by_key_words():
     dal = DataAccessLayer(conn_string)
     dal.connect()
@@ -18,7 +19,6 @@ def get_num_vacancies_by_key_words():
     dal.session.commit()
 
     return len(list_of_vacs)
-
 
 
 def get_vacancies():
@@ -29,6 +29,7 @@ def get_vacancies():
     list_of_vacs = [x[0] for x in list_of_vacs]
     return list_of_vacs
 
+
 def get_first_vacancy_id():
     dal = DataAccessLayer(conn_string)
     dal.connect()
@@ -37,6 +38,7 @@ def get_first_vacancy_id():
     vacancy_id = list_of_vacs[0]
 
     return vacancy_id
+
 
 def get_vacancies_by_key_words():
     dal = DataAccessLayer(conn_string)
@@ -52,7 +54,9 @@ def get_vacancy_obj(vac_id):
     dal = DataAccessLayer(conn_string)
     dal.connect()
     vobj = dal.session.query(Vacancy).filter(Vacancy.vacid == vac_id).first()
+    dal.session.commit()
     return vobj
+
 
 
 def previous_current_next(iterable):
@@ -80,6 +84,7 @@ def add_user_to_db():
 
 def update_user_data_in_db():
     pass
+
 
 def delete_user_in_db():
     pass

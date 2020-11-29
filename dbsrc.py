@@ -85,12 +85,46 @@ class DataAccessLayer:
 
 
 class VacancyMessage:
+
+
     def __init__(self, vobj):
+        self.vacdescription = ""
+        self.title = ""
         self.vacdescription = vobj.vacdescription
         self.title = vobj.vactitle
         self.vac_id = vobj.vacid
 
+    def check_data(self):
+        if self.vacdescription == "":
+            self.vacdescription = "... (не добавлено описание вакансии)"
+        elif self.title == "":
+            self.title = "..."
+
+        if not self.vacdescription:
+            self.vacdescription = "...."
+        elif not self.title:
+            self.title = "...."
+
+    def check_description(self):
+
+        if len(self.description) > 1000:
+            desc_len = len(self.description)
+            desc_parts = desc_len // 1000
+            new_desc = []
+            start = 0
+            pos = start + 1000
+            for i in range(1, desc_parts):
+                new_desc.append(self.description[start:pos])
+                start = pos
+                pos = start + 1000
+
+            new_desc.append(self.description[pos:desc_len])
+            self.description = new_desc
+
+
+
     def make_message(self):
+        self.check_data()
         return (self.title, self.vacdescription, self.vac_id)
 
 
