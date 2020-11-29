@@ -82,3 +82,21 @@ class DataAccessLayer:
         Base.metadata.create_all(self.engine)
         self.Session = sessionmaker(bind = self.engine)
         self.session = self.Session()
+
+
+class VacancyMessage:
+    def __init__(self, vobj):
+        self.vacdescription = vobj.vacdescription
+        self.title = vobj.vactitle
+        self.vac_id = vobj.vacid
+
+    def make_message(self):
+        return (self.title, self.vacdescription, self.vac_id)
+
+
+class VacNavigator:
+
+    def __init__(self, vactuple):
+        self.current_id = vactuple[1]
+        self.previous_id = vactuple[0]
+        self.next_id = vactuple[2]
