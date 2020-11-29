@@ -48,7 +48,13 @@ async def take_a_look(call: CallbackQuery, state: FSMContext):
             data["next_vacancy_id"] = list_of_vacs[cur_vac_ix + 1]
 
     await call.message.answer(f'{vtitle}')
-    await call.message.answer(f'{vbody}', reply_markup = second_choice)
+    if isinstance(vbody, list):
+        for el in vbody:
+            await call.message.answer(f'{el}')
+        await call.message.answer('Конец описания вакансии', reply_markup = second_choice)
+    else:
+        await call.message.answer(f'{vbody}', reply_markup = second_choice)
+
 
 
 #
@@ -78,9 +84,9 @@ async def step_forward(call: CallbackQuery, state: FSMContext):
 
     await call.message.answer(f'{vtitle}')
     if isinstance(vbody, list):
-        for el in vbody[:-1]:
-            await call.message.answer(f'{el}', )
-        await call.message.answer(f'{vbody[-1]}', reply_markup = second_choice)
+        for el in vbody:
+            await call.message.answer(f'{el}')
+        await call.message.answer('Конец описания вакансии', reply_markup = second_choice)
     else:
         await call.message.answer(f'{vbody}', reply_markup = second_choice)
 
@@ -119,7 +125,14 @@ async def step_back(call: CallbackQuery, state: FSMContext):
         logging.info(f"{vtitle} {vbody} {vid}")
 
         await call.message.answer(f'{vtitle}')
-        await call.message.answer(f'{vbody}', reply_markup = second_choice)
+
+        if isinstance(vbody, list):
+            for el in vbody:
+                await call.message.answer(f'{el}')
+            await call.message.answer('Конец описания вакансии', reply_markup = second_choice)
+        else:
+            await call.message.answer(f'{vbody}', reply_markup = second_choice)
+
     else:
         await call.message.answer(f'Предыдущих вакансий нет')
 

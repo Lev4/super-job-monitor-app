@@ -105,26 +105,27 @@ class VacancyMessage:
         elif not self.title:
             self.title = "...."
 
-    def check_description(self):
+    def check_vacdescription(self):
 
-        if len(self.description) > 1000:
-            desc_len = len(self.description)
+        if len(self.vacdescription) > 1000:
+            desc_len = len(self.vacdescription)
             desc_parts = desc_len // 1000
             new_desc = []
             start = 0
             pos = start + 1000
             for i in range(1, desc_parts):
-                new_desc.append(self.description[start:pos])
+                new_desc.append(self.vacdescription[start:pos])
                 start = pos
                 pos = start + 1000
 
-            new_desc.append(self.description[pos:desc_len])
-            self.description = new_desc
+            new_desc.append(self.vacdescription[pos:desc_len])
+            self.vacdescription = new_desc
 
 
 
     def make_message(self):
         self.check_data()
+        self.check_vacdescription()
         return (self.title, self.vacdescription, self.vac_id)
 
 
